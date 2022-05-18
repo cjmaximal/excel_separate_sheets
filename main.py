@@ -38,7 +38,6 @@ def _separate_file(file: str):
     file_path = '{}/{}'.format(SOURCE_PATH, file)
     workbook = openpyxl.load_workbook(file_path)
     sheets = workbook.sheetnames
-    sheets = sheets[:2]
 
     file_path = file.split('.')[0]
     for sheet in sheets:
