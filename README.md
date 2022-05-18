@@ -1,4 +1,4 @@
-# excel_separate_sheets
+# Excel separate sheets
 Batch separation of excel file pages into separate directories
 
 ## Install Python
