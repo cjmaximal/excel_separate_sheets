@@ -3,6 +3,7 @@ import copy
 import os
 import openpyxl
 from datetime import date
+from rich.console import Console
 
 SOURCE_PATH = './source'
 OUTPUT_PATH = './out'
@@ -56,9 +57,19 @@ def run():
                         help='Out workbooks separately by folders (default: place all results to out directory)')
     args = parser.parse_args()
 
+    console = Console()
+
     source_files = _get_files()
-    for file in source_files:
-        _separate_file(file, args.is_separately)
+    count_files = len(source_files)
+    console.log(f"[bold yellow]Files to process: {count_files}")
+
+    with console.status("[bold green]Fetching data...") as status:
+        counter = 0
+        for file in source_files:
+            counter += 1
+            console.log(f"[green]Processing file[/green] {counter}: {file}")
+            _separate_file(file, args.is_separately)
+        console.log(f'[bold][red]Done!')
 
 
 # Press the green button in the gutter to run the script.
